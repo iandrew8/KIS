@@ -24,10 +24,12 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 import kis.databaseservices.KatikamuDbConnection;
+import kis.student.gui.StudentHome;
+import kis.teacher.gui.TeacherDashBoard;
 
 import javax.swing.JPasswordField;
 
-public class Login {
+public class Login extends JFrame{
 
 	private JFrame kisJFrame;
 	private JTextField userNameTextField;
@@ -63,7 +65,7 @@ public class Login {
 		kisJFrame =  new JFrame();
 		kisJFrame.setTitle("KIS Login");
 		kisJFrame.setBounds(100, 100, 450, 325);
-		kisJFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		kisJFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		kisJFrame.getContentPane().setLayout(null);
 		
 		JLabel lblWelcomeToKatikamu = new JLabel("Welcome to Katikamu Information System ");
@@ -117,26 +119,34 @@ public class Login {
 					if(userType == "Teacher") {
 						 userCheck = "SELECT * from teacher";
 					}else {
-						userCheck = "SELECT * from student";
+						userCheck = "SELECT * from students";
 					}
 				
 					ResultSet result = statement.executeQuery(userCheck);
 					while(result.next()) {
 						if(userName.equals(result.getString("username")) && userPassword.equals(result.getString("password"))) {
 							System.out.println("You are welcome " +result.getString("first_name")+ " " + result.getString("last_name"));
-							JOptionPane.showMessageDialog(kisJFrame, "Welcome " + result.getString("first_name")+ " " + result.getString("last_name"));
+							JOptionPane.showMessageDialog(kisJFrame, "Welcome " + result.getString("last_name")+ " " + result.getString("first_name"));
+							kisJFrame.dispose();
+							if(userType == "Teacher") {
+								TeacherDashBoard td = new TeacherDashBoard();
+								td.setVisible(true);
+								td.main(userArray);
+							}else {
+								StudentHome sh = new StudentHome();
+								sh.setVisible(true);
+								sh.main(userArray);
+							}
+							
 						}else {
 							System.out.println("Credentials not found for " + userName);
 							
 						}
 					}
 				}catch(SQLException e) {
-					  System.out.println("Got exception while checking user "+e.getMessage());
+					  System.out.println("Got exception while validating user "+e.getMessage());
 					  
 				  }
-
-				
-			//	System.out.format("%s, %s, %s", userType, userName, userPassword);
 			}
 			
 		});
