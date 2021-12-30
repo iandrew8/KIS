@@ -33,7 +33,6 @@ public class TeacherWelcomeBoard extends JFrame{
 			}
 		});
 	}
-
 	/**
 	 * Create the application.
 	 */

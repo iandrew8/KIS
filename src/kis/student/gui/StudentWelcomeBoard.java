@@ -54,12 +54,32 @@ public class StudentWelcomeBoard {
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnViewMarks = new JButton("View Marks");
+		btnViewMarks.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();
+				StudentMarks stdMarks = new StudentMarks();
+				stdMarks.main(null);
+			}
+			
+		});
 		btnViewMarks.setForeground(SystemColor.text);
 		btnViewMarks.setBackground(SystemColor.desktop);
 		btnViewMarks.setBounds(163, 64, 117, 25);
 		frame.getContentPane().add(btnViewMarks);
 		
 		JButton btnTimetable = new JButton("TimeTable");
+		btnTimetable.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				TimeTable tb = new TimeTable();
+				tb.main(null);
+			}
+			
+		});
 		btnTimetable.setForeground(Color.WHITE);
 		btnTimetable.setBackground(SystemColor.desktop);
 		btnTimetable.setBounds(163, 121, 117, 25);
