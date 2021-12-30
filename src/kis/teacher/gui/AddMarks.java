@@ -15,16 +15,16 @@ import kis.student.gui.Student;
 
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.SystemColor;
 
 public class AddMarks {
 
 	private JFrame frmAddStudentMarks;
-	private JTextField studentNameTextField;
 	private JTextField marksTextField;
 	private JTextField registrationNumberTextField;
 
 	private void Reset() {
-		studentNameTextField.setText("");
 		registrationNumberTextField.setText("");
 		marksTextField.setText("");
 	}
@@ -66,45 +66,37 @@ public class AddMarks {
 		lblAddStudentMarks.setBounds(143, 12, 146, 15);
 		frmAddStudentMarks.getContentPane().add(lblAddStudentMarks);
 		
-		JLabel lblStudentName = new JLabel("Student Name");
-		lblStudentName.setBounds(12, 52, 110, 15);
-		frmAddStudentMarks.getContentPane().add(lblStudentName);
-		
-		studentNameTextField = new JTextField();
-		studentNameTextField.setBounds(231, 50, 114, 19);
-		frmAddStudentMarks.getContentPane().add(studentNameTextField);
-		studentNameTextField.setColumns(10);
-		
 		JLabel lblSubject = new JLabel("Subject");
-		lblSubject.setBounds(12, 130, 70, 15);
+		lblSubject.setBounds(22, 92, 70, 15);
 		frmAddStudentMarks.getContentPane().add(lblSubject);
 		
-		String[] subjectArray = {"", "sst","maths","Science","English"};
+		String[] subjectArray = {"", "SST","MATHS","SCIENCE","ENGLISH"};
 		JComboBox subjectComboBox = new JComboBox(subjectArray);
-		subjectComboBox.setBounds(231, 125, 114, 24);
+		subjectComboBox.setBounds(241, 87, 114, 24);
 		frmAddStudentMarks.getContentPane().add(subjectComboBox);
 		
 		JLabel lblMarks = new JLabel("Marks");
-		lblMarks.setBounds(12, 180, 70, 15);
+		lblMarks.setBounds(22, 142, 70, 15);
 		frmAddStudentMarks.getContentPane().add(lblMarks);
 		
 		marksTextField = new JTextField();
-		marksTextField.setBounds(231, 178, 114, 19);
+		marksTextField.setBounds(241, 140, 114, 19);
 		frmAddStudentMarks.getContentPane().add(marksTextField);
 		marksTextField.setColumns(10);
 		
 		JButton btnSave = new JButton("Save");
+		btnSave.setForeground(SystemColor.text);
+		btnSave.setBackground(new Color(0, 128, 0));
 		btnSave.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String studentName = studentNameTextField.getText().toString();
 				String registrationNumber = registrationNumberTextField.getText().toString();
 				String subject = String.valueOf(subjectComboBox.getSelectedItem());
 				String score = marksTextField.getText().toString();
 				int parsedScore = Integer.parseInt(score);
 				
-				Score studentScore = new Score(studentName, registrationNumber,subject, parsedScore
+				Score studentScore = new Score(registrationNumber,subject, parsedScore
 						);
 				RecordMarksHandler handler = new RecordMarksHandler();
 				
@@ -112,23 +104,23 @@ public class AddMarks {
 				
 				if (java.util.Objects.equals(res, true)) {
 					JOptionPane.showMessageDialog(null,
-							"Student " + studentName + " with " + parsedScore + " added successfully");
+							"added successfully");
 					Reset();
 				} else {
-					JOptionPane.showMessageDialog(null, "Oops, unable to add marks! for" + studentName);
+					JOptionPane.showMessageDialog(null, "Oops, unable to add marks!");
 				}
 			}
 			
 		});
-		btnSave.setBounds(12, 222, 117, 25);
+		btnSave.setBounds(172, 204, 117, 25);
 		frmAddStudentMarks.getContentPane().add(btnSave);
 		
 		JLabel lblRegistrationNumber = new JLabel("Registration Number");
-		lblRegistrationNumber.setBounds(12, 93, 153, 15);
+		lblRegistrationNumber.setBounds(22, 41, 153, 15);
 		frmAddStudentMarks.getContentPane().add(lblRegistrationNumber);
 		
 		registrationNumberTextField = new JTextField();
-		registrationNumberTextField.setBounds(231, 91, 114, 19);
+		registrationNumberTextField.setBounds(241, 39, 114, 19);
 		frmAddStudentMarks.getContentPane().add(registrationNumberTextField);
 		registrationNumberTextField.setColumns(10);
 	}

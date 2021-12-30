@@ -13,7 +13,7 @@ public class StudentList extends JFrame {
     JTable jtbl = new JTable(model);
 
     public StudentList() {
-     //   cnt.setLayout(new FlowLayout(FlowLayout.CENTER));
+     //cnt.setLayout(new FlowLayout(FlowLayout.CENTER));
     	model.addColumn("Number");
         model.addColumn("First Name");
         model.addColumn("Last Name");
@@ -42,6 +42,7 @@ public class StudentList extends JFrame {
         }
         JScrollPane pg = new JScrollPane(jtbl);
         cnt.add(pg);
+        
         this.pack();
         
         

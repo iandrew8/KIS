@@ -24,10 +24,12 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 import kis.databaseservices.KatikamuDbConnection;
-import kis.student.gui.StudentHome;
-import kis.teacher.gui.TeacherDashBoard;
+import kis.student.gui.StudentWelcomeBoard;
+import kis.teacher.gui.RegisterStudents;
+import kis.teacher.gui.TeacherWelcomeBoard;
 
 import javax.swing.JPasswordField;
+import java.awt.SystemColor;
 
 public class Login extends JFrame{
 
@@ -102,6 +104,8 @@ public class Login extends JFrame{
 		kisJFrame.getContentPane().add(passwordField);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.setForeground(SystemColor.text);
+		btnLogin.setBackground(SystemColor.desktop);
 		btnLogin.addActionListener(new ActionListener() {
 
 		
@@ -129,13 +133,11 @@ public class Login extends JFrame{
 							JOptionPane.showMessageDialog(kisJFrame, "Welcome " + result.getString("last_name")+ " " + result.getString("first_name"));
 							kisJFrame.dispose();
 							if(userType == "Teacher") {
-								TeacherDashBoard td = new TeacherDashBoard();
-								td.setVisible(true);
-								td.main(userArray);
+								TeacherWelcomeBoard wb = new TeacherWelcomeBoard();
+								wb.main(null);
 							}else {
-								StudentHome sh = new StudentHome();
-								sh.setVisible(true);
-								sh.main(userArray);
+								StudentWelcomeBoard wb = new StudentWelcomeBoard();
+								wb.main(null);
 							}
 							
 						}else {

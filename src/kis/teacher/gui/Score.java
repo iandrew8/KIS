@@ -4,28 +4,13 @@
 package kis.teacher.gui;
 
 public class Score {
-	private String studentName, registrationNumber, subject;
+	private String registrationNumber, subject;
 	private int subjectScore;
 	
-	public Score(String studentName, String registrationNumber, String subject, int subjectScore) {
-		this.studentName = studentName;
+	public Score(String registrationNumber, String subject, int subjectScore) {
 		this.registrationNumber = registrationNumber;
 		this.subject = subject;
 		this.subjectScore = subjectScore;
-	}
-
-	/**
-	 * @return the studentName
-	 */
-	public String getStudentName() {
-		return studentName;
-	}
-
-	/**
-	 * @param studentName the studentName to set
-	 */
-	public void setStudentName(String studentName) {
-		this.studentName = studentName;
 	}
 
 	/**
@@ -70,5 +55,6 @@ public class Score {
 		this.subjectScore = subjectScore;
 	}
 
+	
 	
 }

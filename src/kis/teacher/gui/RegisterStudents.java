@@ -27,8 +27,10 @@ import kis.student.gui.Student;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.SystemColor;
 
-public class TeacherDashBoard extends JFrame{
+public class RegisterStudents extends JFrame{
 
 	private JFrame teacherDashBoardFrame;
 	private JTextField firstNameTextField;
@@ -51,7 +53,7 @@ public class TeacherDashBoard extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TeacherDashBoard window = new TeacherDashBoard();
+					RegisterStudents window = new RegisterStudents();
 					window.teacherDashBoardFrame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -63,7 +65,7 @@ public class TeacherDashBoard extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public TeacherDashBoard() {
+	public RegisterStudents() {
 		initialize();
 	}
 
@@ -73,7 +75,7 @@ public class TeacherDashBoard extends JFrame{
 	private void initialize() {
 		teacherDashBoardFrame = new JFrame();
 		teacherDashBoardFrame.setTitle("KIS Register Students");
-		teacherDashBoardFrame.setBounds(100, 100, 492, 392);
+		teacherDashBoardFrame.setBounds(100, 100, 492, 415);
 		teacherDashBoardFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		SpringLayout springLayout = new SpringLayout();
 		teacherDashBoardFrame.getContentPane().setLayout(springLayout);
@@ -174,6 +176,9 @@ public class TeacherDashBoard extends JFrame{
 		teacherDashBoardFrame.getContentPane().add(subjectComboBox);
 
 		JButton btnSave = new JButton("Save");
+		springLayout.putConstraint(SpringLayout.EAST, btnSave, -9, SpringLayout.EAST, firstNameTextField);
+		btnSave.setForeground(SystemColor.text);
+		btnSave.setBackground(new Color(0, 100, 0));
 		btnSave.addActionListener(new ActionListener() {
 
 			@Override
@@ -202,8 +207,7 @@ public class TeacherDashBoard extends JFrame{
 							"Student " + lastname + " " + firstname + " registered successfully");
 					Reset();
 					teacherDashBoardFrame.dispose();
-					 AllStudents alls = new AllStudents();
-					 alls.setVisible(true);
+					
 				} else {
 					JOptionPane.showMessageDialog(null, "Oops, unable to register student!");
 				}
@@ -212,10 +216,26 @@ public class TeacherDashBoard extends JFrame{
 			}
 
 		});
-		springLayout.putConstraint(SpringLayout.NORTH, btnSave, 29, SpringLayout.SOUTH, lblSubject);
-		springLayout.putConstraint(SpringLayout.WEST, btnSave, 10, SpringLayout.WEST,
-				teacherDashBoardFrame.getContentPane());
 		teacherDashBoardFrame.getContentPane().add(btnSave);
+		
+		JButton buttonBack = new JButton("Cancel");
+		buttonBack.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				teacherDashBoardFrame.dispose();
+				TeacherWelcomeBoard wb = new TeacherWelcomeBoard();
+				wb.main(null);
+			}
+			
+		});
+		springLayout.putConstraint(SpringLayout.NORTH, btnSave, 0, SpringLayout.NORTH, buttonBack);
+		springLayout.putConstraint(SpringLayout.WEST, btnSave, 39, SpringLayout.EAST, buttonBack);
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonBack, -39, SpringLayout.SOUTH, teacherDashBoardFrame.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, buttonBack, -331, SpringLayout.EAST, teacherDashBoardFrame.getContentPane());
+		buttonBack.setForeground(Color.WHITE);
+		buttonBack.setBackground(new Color(139, 0, 0));
+		teacherDashBoardFrame.getContentPane().add(buttonBack);
 
 	}
 }

@@ -4,8 +4,17 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.UIManager;
 
-public class TeacherWelcomeBoard {
+import kis.auth.Login;
+
+import java.awt.Color;
+import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class TeacherWelcomeBoard extends JFrame{
 
 	private JFrame frame;
 
@@ -41,8 +50,69 @@ public class TeacherWelcomeBoard {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblWelcomeToKatikamu = new JLabel("Welcome");
-		lblWelcomeToKatikamu.setBounds(170, 42, 346, 15);
+		JLabel lblWelcomeToKatikamu = new JLabel("Welcome Teacher !");
+		lblWelcomeToKatikamu.setBounds(144, 12, 346, 15);
 		frame.getContentPane().add(lblWelcomeToKatikamu);
+		
+		JButton btnRegisterStudents = new JButton("Register Students");
+		btnRegisterStudents.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				RegisterStudents reg = new RegisterStudents();
+				reg.main(null);
+			}
+			
+		});
+		btnRegisterStudents.setForeground(SystemColor.text);
+		btnRegisterStudents.setBackground(SystemColor.desktop);
+		btnRegisterStudents.setBounds(133, 54, 163, 25);
+		frame.getContentPane().add(btnRegisterStudents);
+		
+		JButton btnViewStudents = new JButton("View Students");
+		btnViewStudents.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				StudentList studentList = new StudentList();
+				studentList.main(null);
+			}
+			
+		});
+		btnViewStudents.setForeground(SystemColor.text);
+		btnViewStudents.setBackground(SystemColor.desktop);
+		btnViewStudents.setBounds(133, 112, 163, 25);
+		frame.getContentPane().add(btnViewStudents);
+		
+		JButton btnRecordStudentMarks = new JButton("Student Marks");
+		btnRecordStudentMarks.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();
+				AddMarks addMarks = new AddMarks();
+				addMarks.main(null);
+			}
+		});
+		btnRecordStudentMarks.setForeground(SystemColor.text);
+		btnRecordStudentMarks.setBackground(SystemColor.desktop);
+		btnRecordStudentMarks.setBounds(133, 162, 163, 25);
+		frame.getContentPane().add(btnRecordStudentMarks);
+		
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				Login login = new Login();
+				login.main(null);
+			}
+			
+		});
+		btnLogout.setForeground(Color.WHITE);
+		btnLogout.setBackground(SystemColor.desktop);
+		btnLogout.setBounds(133, 210, 163, 25);
+		frame.getContentPane().add(btnLogout);
 	}
 }
